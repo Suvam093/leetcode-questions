@@ -12,10 +12,12 @@ public:
             if(prime[i]){
                 ans++;
                 double j=i*i;
-                while(j<n){
-                    prime[j]=false;
-                    j+=i;
-                } 
+                if(i<sqrt(n)){
+                    while(j<n){
+                        prime[j]=false;
+                        j+=i;
+                    } 
+                }
             }
         }
         return ans;
