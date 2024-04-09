@@ -17,9 +17,9 @@ public:
                 } 
             }
         }
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n; i++)
             if(prime[i]) ans++;
-        }
+        
         return ans;
 
     }
