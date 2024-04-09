@@ -8,17 +8,17 @@ public:
         prime[0] = prime[1]= false;
 
         int ans=0;
-        for(double i=2; i<n; i++){
+        for(double i=2; i*i<=n; i++){
             if(prime[i]){
-                ans++;
                 double j=i*i;
-                if(i<sqrt(n)){
-                    while(j<n){
-                        prime[j]=false;
-                        j+=i;
-                    } 
-                }
+                while(j<n){
+                    prime[j]=false;
+                    j+=i;
+                } 
             }
+        }
+        for(int i=0; i<n; i++){
+            if(prime[i]) ans++;
         }
         return ans;
 
