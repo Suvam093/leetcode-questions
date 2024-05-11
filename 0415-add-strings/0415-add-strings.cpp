@@ -15,16 +15,16 @@ public:
         if(sum>=10){
             sum %= 10;
         }
-        ans.push_back(sum + '0');
+       
 
         result(num1, s1 - 1, num2, s2 - 1, ans ,carry);
+         ans.push_back(sum + '0');
     }
 
     string addStrings(string num1, string num2) {
         string ans="";
 
         result(num1, num1.size()-1, num2, num2.size()-1, ans,0);
-        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
