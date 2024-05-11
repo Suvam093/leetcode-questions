@@ -1,24 +1,19 @@
 class Solution {
 public:
-    string recurse(string &s, string &part){
-        int found = s.find(part);
-        if(found == string::npos) return s;
-
-        string left;
-        string right;
-        
-        if(found!= string::npos){
-            left = s.substr(0,found);
-            right = s.substr(found+part.size(),s.size());
-        }
-        s=left+right;
-        recurse(s, part);
-        return s;
-    }
-
+    
 
     string removeOccurrences(string s, string part) {
-        recurse(s, part);
+        int found = s.find(part);
+        string left="";
+        string right="";
+        while(found!= string::npos){
+            
+            left = s.substr(0,found);
+            right = s.substr(found+part.size(), s.size());
+            cout<<left<<" "<<right<<endl;
+            s=left+right;
+            found = s.find(part);
+        }
         return s;
     }
 };
