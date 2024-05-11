@@ -1,26 +1,29 @@
 class Solution {
 public:
 
-    void reccursive(string& num1, int p1, string& num2, int p2, int carry, string& ans){
-        if(p1<0 && p2<0){
+    void result(string& num1, int s1, string& num2, int s2, string& ans, int carry){
+        if(s1<0 && s2<0){
             if(carry>0) ans.push_back(carry + '0');
             return;
         }
         
-        int n1 = (p1>=0 ? num1[p1] : '0') - '0';
-        int n2 = (p2>=0 ? num2[p2] : '0') - '0';
+        
+        int n1 = (s1>=0?num1[s1] : '0') - '0';
+        int n2 = (s2>=0?num2[s2] : '0') - '0';
         int sum = n1 + n2 + carry;
-        int digit = sum % 10;
-        carry = sum / 10;
-        ans.push_back(digit + '0');
+        carry = sum/10;
+        if(sum>=10){
+            sum %= 10;
+        }
+        ans.push_back(sum + '0');
 
-        reccursive(num1, p1 - 1, num2, p2 - 1 , carry, ans);
-
+        result(num1, s1 - 1, num2, s2 - 1, ans ,carry);
     }
 
-        string addStrings(string num1, string num2) {
+    string addStrings(string num1, string num2) {
         string ans="";
-        reccursive(num1, num1.size()-1, num2, num2.size()-1, 0, ans);
+
+        result(num1, num1.size()-1, num2, num2.size()-1, ans,0);
         reverse(ans.begin(), ans.end());
         return ans;
     }
