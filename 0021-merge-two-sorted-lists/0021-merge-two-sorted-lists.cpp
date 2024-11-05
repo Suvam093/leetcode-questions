@@ -8,68 +8,33 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution
-{
+class Solution {
 public:
-    ListNode *Ans(ListNode *list1, ListNode *list2)
-    {
-        if (list1->next == NULL)
-        {
-            list1->next = list2;
-            return list1;
-        }
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1 == NULL) return list2;
+        if(list2 == NULL) return list1;
 
-        ListNode *Current1 = list1;
-        ListNode *Forward1 = Current1->next;
+        ListNode* curr1 = list1;
+        ListNode* curr2 = list2;
+        
+        ListNode* ans =new ListNode(-1);
+        ListNode* newNode = ans;
 
-        ListNode *Current2 = list2;
-        ListNode *Forward2 = NULL;
-
-        while (Forward1 != NULL && Current2 != NULL)
-        {
-            if ((Current2->val >= Current1->val) && (Current2->val <= Forward1->val))
-            {
-                // Insertion of Node:
-                Forward1 = Current1->next;
-                Forward2 = Current2->next;
-                Current1->next = Current2;
-                Current2->next = Forward1;
-
-                // Updating Pointers:
-                Current1 = Current2;
-                Current2 = Forward2;
+        while(curr1 != NULL && curr2 != NULL){
+            if(curr1 ->val <= curr2 -> val){
+                newNode -> next = curr1;
+                newNode = newNode -> next;
+                curr1 = curr1 -> next;
             }
-            else
-            {
-                Current1 = Forward1;
-                Forward1 = Forward1->next;
-
-                if (Forward1 == NULL)
-                {
-                    Current1->next = Current2;
-                    return list1;
-                }
+            else {
+                newNode -> next = curr2;
+                newNode = newNode -> next;
+                curr2 = curr2 -> next;
             }
-        }
-        return list1;
-    }
-    //**********************************************
-    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
-    {
-
-        if (list1 == NULL)
-            return list2;
-
-        if (list2 == NULL)
-            return list1;
-
-        if (list1 == NULL && list2 == NULL)
-            return NULL;
-
-        if (list1->val <= list2->val)
-            return Ans(list1, list2);
-
-        else
-            return Ans(list2, list1);
+            
+        }   
+        curr1 == NULL ? newNode -> next = curr2 : newNode -> next = curr1;
+        
+        return ans -> next;
     }
 };
