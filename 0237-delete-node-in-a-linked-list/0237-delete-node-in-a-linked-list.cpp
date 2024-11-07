@@ -12,12 +12,12 @@ public:
         if(node == NULL) return ;
         if(node-> next == NULL) delete node;
 
-        else{
-            ListNode* temp = node -> next;
-            node->val = temp-> val;
-            node -> next = temp -> next;
-            temp->next = NULL;
-            delete temp;
-        }
+        
+        ListNode* temp = node -> next;
+        node->val = temp-> val;
+        node -> next = temp -> next;
+        temp->next = NULL;
+        delete temp;
+        
     }
 };
