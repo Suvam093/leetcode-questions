@@ -11,12 +11,11 @@ public:
     void deleteNode(ListNode* node) {
         if(node == NULL) return ;
         if(node-> next == NULL) delete node;
-
         
         ListNode* temp = node -> next;
         node->val = temp-> val;
         node -> next = temp -> next;
-        temp->next = NULL;
+        // temp->next = NULL;
         delete temp;
         
     }
